@@ -228,10 +228,10 @@ public class HomePage extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 5, 50));
 
-        jLabel4.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 20)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/admin.png")), 50, 50));
         jLabel4.setText("Welcome, Admin");
+        jLabel4.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 20)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1580, 10, 210, 50));
 
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 25)); // NOI18N
@@ -254,6 +254,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel4MouseClicked(evt);
@@ -267,10 +268,10 @@ public class HomePage extends javax.swing.JFrame {
         });
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(153, 153, 153));
         jLabel2.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/return.png")), 50, 50));
         jLabel2.setText("Return Book");
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(153, 153, 153));
         jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 290, 80));
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 350, 80));
@@ -279,13 +280,14 @@ public class HomePage extends javax.swing.JFrame {
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 350, -1));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Features");
+        jLabel7.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 350, 50));
 
         jPanel6.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel6MouseClicked(evt);
@@ -299,15 +301,16 @@ public class HomePage extends javax.swing.JFrame {
         });
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(153, 153, 153));
         jLabel8.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/book.png")), 50, 50));
         jLabel8.setText("Mange Books");
+        jLabel8.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(153, 153, 153));
         jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 290, 80));
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 350, 80));
 
         jPanel7.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel7MouseClicked(evt);
@@ -321,15 +324,16 @@ public class HomePage extends javax.swing.JFrame {
         });
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(153, 153, 153));
         jLabel9.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/student.png")), 50, 50));
         jLabel9.setText("Mange Students");
+        jLabel9.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(153, 153, 153));
         jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 290, 80));
 
         jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 350, 80));
 
         jPanel8.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel8MouseClicked(evt);
@@ -343,10 +347,10 @@ public class HomePage extends javax.swing.JFrame {
         });
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(153, 153, 153));
         jLabel10.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/borrow.png")), 50, 50));
         jLabel10.setText("Issue Book");
+        jLabel10.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(153, 153, 153));
         jPanel8.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 290, 80));
 
         jPanel3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 350, 80));
@@ -354,15 +358,16 @@ public class HomePage extends javax.swing.JFrame {
         jPanel9.setBackground(new java.awt.Color(204, 204, 204));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/home-page.png")), 30, 30));
         jLabel11.setText("HOME PAGE");
+        jLabel11.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jPanel9.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 240, 50));
 
         jPanel3.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 350, 50));
 
         jPanel10.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel10MouseClicked(evt);
@@ -376,15 +381,16 @@ public class HomePage extends javax.swing.JFrame {
         });
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(153, 153, 153));
         jLabel12.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/record.png")), 50, 50));
         jLabel12.setText("View Records");
+        jLabel12.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(153, 153, 153));
         jPanel10.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 290, 80));
 
         jPanel3.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 350, 80));
 
         jPanel13.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel13MouseClicked(evt);
@@ -398,10 +404,10 @@ public class HomePage extends javax.swing.JFrame {
         });
         jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(153, 153, 153));
         jLabel15.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/statistic.png")), 50, 50));
         jLabel15.setText("Statistic");
+        jLabel15.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(153, 153, 153));
         jPanel13.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 290, 80));
 
         jPanel3.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 350, 80));
@@ -414,11 +420,11 @@ public class HomePage extends javax.swing.JFrame {
         jPanel15.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(255, 51, 51)));
         jPanel15.setToolTipText("");
 
-        lblBookQuantity.setFont(new java.awt.Font("Segoe UI Black", 0, 50)); // NOI18N
-        lblBookQuantity.setForeground(new java.awt.Color(102, 102, 102));
         lblBookQuantity.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBookQuantity.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/bookshelves.png")), 50, 50));
         lblBookQuantity.setText("1000");
+        lblBookQuantity.setFont(new java.awt.Font("Segoe UI Black", 0, 50)); // NOI18N
+        lblBookQuantity.setForeground(new java.awt.Color(102, 102, 102));
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -445,11 +451,11 @@ public class HomePage extends javax.swing.JFrame {
         jPanel16.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(255, 51, 51)));
         jPanel16.setToolTipText("");
 
-        lblStudentQuantity.setFont(new java.awt.Font("Segoe UI Black", 0, 50)); // NOI18N
-        lblStudentQuantity.setForeground(new java.awt.Color(102, 102, 102));
         lblStudentQuantity.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblStudentQuantity.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/people.png")), 50, 50));
         lblStudentQuantity.setText("1000");
+        lblStudentQuantity.setFont(new java.awt.Font("Segoe UI Black", 0, 50)); // NOI18N
+        lblStudentQuantity.setForeground(new java.awt.Color(102, 102, 102));
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -519,11 +525,11 @@ public class HomePage extends javax.swing.JFrame {
         jPanel17.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(255, 51, 51)));
         jPanel17.setToolTipText("");
 
-        lblRecordQuantity.setFont(new java.awt.Font("Segoe UI Black", 0, 50)); // NOI18N
-        lblRecordQuantity.setForeground(new java.awt.Color(102, 102, 102));
         lblRecordQuantity.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRecordQuantity.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/record.png")), 50, 50));
         lblRecordQuantity.setText("1000");
+        lblRecordQuantity.setFont(new java.awt.Font("Segoe UI Black", 0, 50)); // NOI18N
+        lblRecordQuantity.setForeground(new java.awt.Color(102, 102, 102));
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -548,7 +554,6 @@ public class HomePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseEntered
-        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jPanel6.setBackground(Color.lightGray);
     }//GEN-LAST:event_jPanel6MouseEntered
 
@@ -558,54 +563,28 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel6MouseExited
 
     private void jPanel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseEntered
-        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jPanel7.setBackground(Color.lightGray);
     }//GEN-LAST:event_jPanel7MouseEntered
 
     private void jPanel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseExited
-        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         jPanel7.setBackground(new Color(51,51,51));
     }//GEN-LAST:event_jPanel7MouseExited
 
     private void jPanel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseEntered
-        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jPanel8.setBackground(Color.lightGray);
     }//GEN-LAST:event_jPanel8MouseEntered
 
     private void jPanel8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseExited
-        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         jPanel8.setBackground(new Color(51,51,51));
     }//GEN-LAST:event_jPanel8MouseExited
 
     private void jPanel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseEntered
-        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jPanel4.setBackground(Color.lightGray);
     }//GEN-LAST:event_jPanel4MouseEntered
 
     private void jPanel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseExited
-        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         jPanel4.setBackground(new Color(51,51,51));
     }//GEN-LAST:event_jPanel4MouseExited
-
-    private void jPanel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseEntered
-        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        jPanel10.setBackground(Color.lightGray);
-    }//GEN-LAST:event_jPanel10MouseEntered
-
-    private void jPanel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseExited
-        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        jPanel10.setBackground(new Color(51,51,51));
-    }//GEN-LAST:event_jPanel10MouseExited
-
-    private void jPanel13MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel13MouseEntered
-        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        jPanel13.setBackground(Color.lightGray);
-    }//GEN-LAST:event_jPanel13MouseEntered
-
-    private void jPanel13MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel13MouseExited
-        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        jPanel13.setBackground(new Color(51,51,51));
-    }//GEN-LAST:event_jPanel13MouseExited
 
     private void jPanel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel13MouseClicked
         Statistic page = new Statistic();
@@ -646,6 +625,26 @@ public class HomePage extends javax.swing.JFrame {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jPanel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseExited
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        jPanel10.setBackground(new Color(51,51,51));
+    }//GEN-LAST:event_jPanel10MouseExited
+
+    private void jPanel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseEntered
+        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jPanel10.setBackground(Color.lightGray);
+    }//GEN-LAST:event_jPanel10MouseEntered
+
+    private void jPanel13MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel13MouseExited
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        jPanel13.setBackground(new Color(51,51,51));
+    }//GEN-LAST:event_jPanel13MouseExited
+
+    private void jPanel13MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel13MouseEntered
+        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jPanel13.setBackground(Color.lightGray);
+    }//GEN-LAST:event_jPanel13MouseEntered
 
     /**
      * @param args the command line arguments
