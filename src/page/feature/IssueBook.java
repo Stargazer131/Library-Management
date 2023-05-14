@@ -117,7 +117,7 @@ public class IssueBook extends javax.swing.JFrame {
                 exist = true;
                 lblStudentName.setText(rs.getString("name"));
                 lblGender.setText(rs.getString("gender"));
-                lblBirthday.setText(Formatter.formatDateDisplay(rs.getDate("birthday")));
+                lblBirthday.setText(Formatter.dateToString(rs.getDate("birthday")));
                 lblEmail.setText(rs.getString("email"));
                 lblContact.setText(rs.getString("contact"));
             }

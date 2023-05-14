@@ -218,7 +218,7 @@ public class Statistic extends javax.swing.JFrame {
                 String studenId = rs.getString("student_id");
                 String name = rs.getString("name");
                 String genderData = rs.getString("gender");
-                String birthday = Formatter.formatDateDisplay(rs.getDate("birthday"));
+                String birthday = Formatter.dateToString(rs.getDate("birthday"));
                 int age = rs.getInt("age");
                 String email = rs.getString("email");
                 String contact = rs.getString("contact");
@@ -286,7 +286,7 @@ public class Statistic extends javax.swing.JFrame {
             ResultSet rs = null;
             try {
                 con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms?autoReconnect=true&useSSL=false", "root", "hayasaka131");
-                String sql = "select name from genres";    
+                String sql = "select name from genres order by name";    
                 pst = con.prepareStatement(sql);
                 rs = pst.executeQuery();
                 genreBox.addItem("All");

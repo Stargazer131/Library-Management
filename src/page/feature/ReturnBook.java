@@ -117,8 +117,8 @@ public class ReturnBook extends javax.swing.JFrame {
             lblStudentName.setText(rs.getString("name"));
             Date issueDate = rs.getDate("issue_date");
             Date dueDate = rs.getDate("due_date");
-            lblIssueDate.setText(Formatter.formatDateDisplay(issueDate));
-            lblDueDate.setText(Formatter.formatDateDisplay(dueDate));
+            lblIssueDate.setText(Formatter.dateToString(issueDate));
+            lblDueDate.setText(Formatter.dateToString(dueDate));
             
         } 
         catch(Exception e1) {

@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -27,7 +28,31 @@ import ultility.Resizer;
  * @author Hao
  */
 public class ManageBook extends javax.swing.JFrame {
+    private static HashMap<String, Integer> genreMap = new HashMap<>();
     private boolean comeBackToHomePage;
+    
+    private static void getGenreMap() {
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms?autoReconnect=true&useSSL=false", "root", "hayasaka131");
+            String sql = "select * from genres";    
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next()) {
+                genreMap.put(rs.getString("name"), rs.getInt("genre_id"));
+            }
+        } 
+        catch(Exception e1) {
+            System.out.println(e1);
+        } 
+        finally {
+            try { if (rs != null) rs.close(); } catch (Exception e2) {}
+            try { if (pst != null) pst.close(); } catch (Exception e3) {}
+            try { if (con != null) con.close(); } catch (Exception e4) {}
+        }
+    }
     /**
      * Creates new form ManageBooks
      */
@@ -43,6 +68,7 @@ public class ManageBook extends javax.swing.JFrame {
             jButton4.setEnabled(false);
         }
         sortByColumn();
+        getGenreMap();
     }
     
     // set book detail to the table
@@ -256,9 +282,9 @@ public class ManageBook extends javax.swing.JFrame {
     
     // set the selected genres for a book
     private void setDataForGenreListIntoDatabase() {
-        int[] selectedItems = genreList.getSelectedIndices();
+        List<String> selectedItems = genreList.getSelectedValuesList();
         String bookId = txtBookId.getText();
-        for(int index : selectedItems) {
+        for(String selectedGenre : selectedItems) {
             Connection con = null;
             PreparedStatement pst = null;
             ResultSet rs = null;
@@ -267,7 +293,7 @@ public class ManageBook extends javax.swing.JFrame {
                 String sql = "insert into book_genres values(?, ?)";
                 pst = con.prepareStatement(sql);
                 pst.setString(1, bookId);
-                pst.setInt(2, index);
+                pst.setInt(2, genreMap.get(selectedGenre));
                 int row = pst.executeUpdate();
                 if(row > 0) {
                     
@@ -420,7 +446,7 @@ public class ManageBook extends javax.swing.JFrame {
             ResultSet rs = null;
             try {
                 con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms?autoReconnect=true&useSSL=false", "root", "hayasaka131");
-                String sql = "select name from genres";    
+                String sql = "select name from genres order by name";    
                 pst = con.prepareStatement(sql);
                 rs = pst.executeQuery();
                 model.addElement("All");

@@ -14,8 +14,24 @@ import java.sql.Date;
  */
 public class Formatter {
     // format date display
-    public static String formatDateDisplay(Date date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(date);
+    public static String dateToString(Date date) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            return sdf.format(date);
+        }
+        catch(Exception e) {
+            return null;
+        }
+    }
+    
+    // convert string to date
+    public static Date stringToDate(String date) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            return new Date(sdf.parse(date).getTime());
+        }
+        catch(Exception e) {
+            return null;
+        }
     }
 }

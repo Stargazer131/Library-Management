@@ -39,7 +39,7 @@ public class HomePage extends javax.swing.JFrame {
         updateData();
         this.setIconImage(new ImageIcon(getClass().getResource("/resource/icons/library.png")).getImage());
     }
-    
+        
     // update data
     private void updateData() {
         updateQuantity("books");

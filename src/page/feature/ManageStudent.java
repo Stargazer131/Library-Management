@@ -79,7 +79,7 @@ public class ManageStudent extends javax.swing.JFrame {
                 Date birthday = rs.getDate("birthday");
                 String email = rs.getString("email");
                 String contact = rs.getString("contact");
-                String birthdayInText = Formatter.formatDateDisplay(birthday);
+                String birthdayInText = Formatter.dateToString(birthday);
                 
                 Object[] obj = {studentId, studentName, gender, birthdayInText, email, contact};
                 model.addRow(obj);
@@ -376,7 +376,7 @@ public class ManageStudent extends javax.swing.JFrame {
                 String studentIdData = rs.getString("student_id");
                 String nameData = rs.getString("name");
                 String genderData = rs.getString("gender");
-                String birthdayData = Formatter.formatDateDisplay(rs.getDate("birthday"));
+                String birthdayData = Formatter.dateToString(rs.getDate("birthday"));
                 String studentEmailData = rs.getString("email");
                 String studentContactData = rs.getString("contact");
                 Object[] obj = {studentIdData, nameData, genderData, birthdayData, studentEmailData, studentContactData};

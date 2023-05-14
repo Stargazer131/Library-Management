@@ -77,12 +77,12 @@ public class ViewRecord extends javax.swing.JFrame {
                 String bookName = rs.getString("title");
                 String studentId = rs.getString("student_id");
                 String studentName = rs.getString("name");
-                String issueDate = Formatter.formatDateDisplay(rs.getDate("issue_date"));
-                String dueDate = Formatter.formatDateDisplay(rs.getDate("due_date"));
+                String issueDate = Formatter.dateToString(rs.getDate("issue_date"));
+                String dueDate = Formatter.dateToString(rs.getDate("due_date"));
 
                 String returnDate = "None";
                 if (rs.getDate("return_date") != null) {
-                    returnDate = Formatter.formatDateDisplay(rs.getDate("return_date"));
+                    returnDate = Formatter.dateToString(rs.getDate("return_date"));
                 }
                 String status = rs.getString("status");
 
@@ -173,12 +173,12 @@ public class ViewRecord extends javax.swing.JFrame {
                 String bookNameData = rs.getString("title");
                 String studentIdData = rs.getString("student_id");
                 String studentNameData = rs.getString("name");
-                String issueDateData = Formatter.formatDateDisplay(rs.getDate("issue_date"));
-                String dueDateData = Formatter.formatDateDisplay(rs.getDate("due_date"));
+                String issueDateData = Formatter.dateToString(rs.getDate("issue_date"));
+                String dueDateData = Formatter.dateToString(rs.getDate("due_date"));
 
                 String returnDate = "None";
                 if (rs.getDate("return_date") != null) {
-                    returnDate = Formatter.formatDateDisplay(rs.getDate("return_date"));
+                    returnDate = Formatter.dateToString(rs.getDate("return_date"));
                 }
                 String statusData = rs.getString("status");
 
