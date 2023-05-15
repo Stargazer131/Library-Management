@@ -189,6 +189,8 @@ public class HomePage extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         lblBookQuantity = new javax.swing.JLabel();
@@ -280,10 +282,10 @@ public class HomePage extends javax.swing.JFrame {
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 350, -1));
 
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Features");
         jLabel7.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Features");
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 350, 50));
 
         jPanel6.setBackground(new java.awt.Color(51, 51, 51));
@@ -324,10 +326,10 @@ public class HomePage extends javax.swing.JFrame {
         });
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/student.png")), 50, 50));
-        jLabel9.setText("Mange Students");
         jLabel9.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel9.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/student.png")), 50, 50));
+        jLabel9.setText("Mange Students");
         jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 290, 80));
 
         jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 350, 80));
@@ -381,10 +383,10 @@ public class HomePage extends javax.swing.JFrame {
         });
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel12.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/record.png")), 50, 50));
-        jLabel12.setText("View Records");
         jLabel12.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel12.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/record.png")), 50, 50));
+        jLabel12.setText("View Records");
         jPanel10.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 290, 80));
 
         jPanel3.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 350, 80));
@@ -404,13 +406,36 @@ public class HomePage extends javax.swing.JFrame {
         });
         jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel15.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/statistic.png")), 50, 50));
-        jLabel15.setText("Statistic");
         jLabel15.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel15.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/statistic.png")), 50, 50));
+        jLabel15.setText("Statistic");
         jPanel13.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 290, 80));
 
-        jPanel3.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 350, 80));
+        jPanel3.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 350, 80));
+
+        jPanel11.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel11MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel11MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel11MouseExited(evt);
+            }
+        });
+        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel13.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/fine.png")), 50, 50));
+        jLabel13.setText("Fines");
+        jPanel11.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 290, 80));
+
+        jPanel3.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 350, 80));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 350, 930));
 
@@ -420,11 +445,11 @@ public class HomePage extends javax.swing.JFrame {
         jPanel15.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(255, 51, 51)));
         jPanel15.setToolTipText("");
 
+        lblBookQuantity.setFont(new java.awt.Font("Segoe UI Black", 0, 50)); // NOI18N
+        lblBookQuantity.setForeground(new java.awt.Color(102, 102, 102));
         lblBookQuantity.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBookQuantity.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/bookshelves.png")), 50, 50));
         lblBookQuantity.setText("1000");
-        lblBookQuantity.setFont(new java.awt.Font("Segoe UI Black", 0, 50)); // NOI18N
-        lblBookQuantity.setForeground(new java.awt.Color(102, 102, 102));
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -451,11 +476,11 @@ public class HomePage extends javax.swing.JFrame {
         jPanel16.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(255, 51, 51)));
         jPanel16.setToolTipText("");
 
+        lblStudentQuantity.setFont(new java.awt.Font("Segoe UI Black", 0, 50)); // NOI18N
+        lblStudentQuantity.setForeground(new java.awt.Color(102, 102, 102));
         lblStudentQuantity.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblStudentQuantity.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/people.png")), 50, 50));
         lblStudentQuantity.setText("1000");
-        lblStudentQuantity.setFont(new java.awt.Font("Segoe UI Black", 0, 50)); // NOI18N
-        lblStudentQuantity.setForeground(new java.awt.Color(102, 102, 102));
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -525,11 +550,11 @@ public class HomePage extends javax.swing.JFrame {
         jPanel17.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(255, 51, 51)));
         jPanel17.setToolTipText("");
 
+        lblRecordQuantity.setFont(new java.awt.Font("Segoe UI Black", 0, 50)); // NOI18N
+        lblRecordQuantity.setForeground(new java.awt.Color(102, 102, 102));
         lblRecordQuantity.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRecordQuantity.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/record.png")), 50, 50));
         lblRecordQuantity.setText("1000");
-        lblRecordQuantity.setFont(new java.awt.Font("Segoe UI Black", 0, 50)); // NOI18N
-        lblRecordQuantity.setForeground(new java.awt.Color(102, 102, 102));
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -558,7 +583,6 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel6MouseEntered
 
     private void jPanel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseExited
-        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         jPanel6.setBackground(new Color(51,51,51));
     }//GEN-LAST:event_jPanel6MouseExited
 
@@ -627,24 +651,32 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jPanel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseExited
-        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         jPanel10.setBackground(new Color(51,51,51));
     }//GEN-LAST:event_jPanel10MouseExited
 
     private void jPanel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseEntered
-        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jPanel10.setBackground(Color.lightGray);
     }//GEN-LAST:event_jPanel10MouseEntered
 
     private void jPanel13MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel13MouseExited
-        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         jPanel13.setBackground(new Color(51,51,51));
     }//GEN-LAST:event_jPanel13MouseExited
 
     private void jPanel13MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel13MouseEntered
-        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jPanel13.setBackground(Color.lightGray);
     }//GEN-LAST:event_jPanel13MouseEntered
+
+    private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked
+
+    }//GEN-LAST:event_jPanel11MouseClicked
+
+    private void jPanel11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseEntered
+        jPanel11.setBackground(Color.lightGray);
+    }//GEN-LAST:event_jPanel11MouseEntered
+
+    private void jPanel11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseExited
+        jPanel11.setBackground(new Color(51,51,51));
+    }//GEN-LAST:event_jPanel11MouseExited
 
     /**
      * @param args the command line arguments
@@ -686,6 +718,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -700,6 +733,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;

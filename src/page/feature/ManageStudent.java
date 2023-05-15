@@ -181,10 +181,10 @@ public class ManageStudent extends javax.swing.JFrame {
             
             int rowCount = pst.executeUpdate();
             if(rowCount > 0) {
-                JOptionPane.showMessageDialog(this, "Student added successfully!");
+                JOptionPane.showMessageDialog(this, "Student add successfully!");
             }
             else {
-                JOptionPane.showMessageDialog(this, "Record inserted failure!");
+                JOptionPane.showMessageDialog(this, "Student add failure!");
             }
         } 
         catch(Exception e1) {
@@ -224,10 +224,10 @@ public class ManageStudent extends javax.swing.JFrame {
            
             int rowCount = pst.executeUpdate();
             if(rowCount > 0) {
-                JOptionPane.showMessageDialog(this, "Student updated successfully!");
+                JOptionPane.showMessageDialog(this, "Student update successfully!");
             }
             else {
-                JOptionPane.showMessageDialog(this, "Record updated failure!");
+                JOptionPane.showMessageDialog(this, "Student update failure!");
             }
         } 
         catch(Exception e1) {
@@ -255,14 +255,15 @@ public class ManageStudent extends javax.swing.JFrame {
             
             int rowCount = pst.executeUpdate();
             if(rowCount > 0) {
-                JOptionPane.showMessageDialog(this, "Student was deleted successfully!");
+                JOptionPane.showMessageDialog(this, "Student delete successfully!");
             }
             else {
-                JOptionPane.showMessageDialog(this, "Student was deleted failure!");
+                JOptionPane.showMessageDialog(this, "Student delete failure!");
             }
         } 
         catch(Exception e1) {
             System.out.println(e1);
+            JOptionPane.showMessageDialog(this, "This student is already in record history, can't delete he/she!");
         } 
         finally {
             try { if (rs != null) rs.close(); } catch (Exception e2) {}
@@ -304,36 +305,6 @@ public class ManageStudent extends javax.swing.JFrame {
         setStudentsDetailToTable();
         this.revalidate();
         this.repaint();
-    }
-    
-    // delete student record in issue details
-    private void deleteStudentRecord() {
-        String studentId = txtStudentId.getText();
-        
-        Connection con = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-        try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms?autoReconnect=true&useSSL=false", "root", "hayasaka131");
-            String sql = "delete from records where student_id = ?";
-            pst = con.prepareStatement(sql);
-            pst.setString(1, studentId);
-            int rowCount = pst.executeUpdate();
-            if(rowCount > 0) {
-                
-            }
-            else {
-                System.out.println("Error delete student records");
-            }
-        } 
-        catch(Exception e1) {
-            System.out.println(e1);
-        } 
-        finally {
-            try { if (rs != null) rs.close(); } catch (Exception e2) {}
-            try { if (pst != null) pst.close(); } catch (Exception e3) {}
-            try { if (con != null) con.close(); } catch (Exception e4) {}
-        }
     }
     
     private void search() {
@@ -807,12 +778,8 @@ public class ManageStudent extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if(validateData()) {
             if(checkExitedStudent()) {
-                int choice = JOptionPane.showConfirmDialog(this, "Delete this student mean delete all the issue details about it, are you sure?");
-                if(choice == JOptionPane.OK_OPTION) {
-                    deleteStudentRecord();
-                    deleteStudent();
-                    refresh();
-                }
+                deleteStudent();
+                refresh();
             }
             else {
                 JOptionPane.showMessageDialog(this, "Can't find student to delete!");

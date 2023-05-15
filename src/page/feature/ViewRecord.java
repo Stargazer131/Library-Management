@@ -73,6 +73,7 @@ public class ViewRecord extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) recordTable.getModel();
             model.setRowCount(0);
             while (rs.next()) {
+                int recordId = rs.getInt("record_id");
                 String bookId = rs.getString("book_id");
                 String bookName = rs.getString("title");
                 String studentId = rs.getString("student_id");
@@ -86,7 +87,7 @@ public class ViewRecord extends javax.swing.JFrame {
                 }
                 String status = rs.getString("status");
 
-                Object[] obj = {bookId, bookName, studentId, studentName, issueDate, dueDate, status, returnDate};
+                Object[] obj = {recordId, bookId, bookName, studentId, studentName, issueDate, dueDate, status, returnDate};
                 model.addRow(obj);
             }
         } catch (Exception e1) {
@@ -148,7 +149,7 @@ public class ViewRecord extends javax.swing.JFrame {
             studentName = studentName.toLowerCase();
 
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms?autoReconnect=true&useSSL=false", "root", "hayasaka131");
-            String sql = "select book_id, title, student_id, name, "
+            String sql = "select record_id, book_id, title, student_id, name, "
                     + "issue_date, due_date, status, return_date "
                     + "from books natural join records natural join students "
                     + "where lower(book_id) like ? and lower(title) like ? and "
@@ -169,6 +170,7 @@ public class ViewRecord extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) recordTable.getModel();
             model.setRowCount(0);
             while (rs.next()) {
+                int recordIdData = rs.getInt("record_id");
                 String bookIdData = rs.getString("book_id");
                 String bookNameData = rs.getString("title");
                 String studentIdData = rs.getString("student_id");
@@ -182,7 +184,7 @@ public class ViewRecord extends javax.swing.JFrame {
                 }
                 String statusData = rs.getString("status");
 
-                Object[] obj = {bookIdData, bookNameData, studentIdData, studentNameData, issueDateData, dueDateData, statusData, returnDate};
+                Object[] obj = {recordIdData, bookIdData, bookNameData, studentIdData, studentNameData, issueDateData, dueDateData, statusData, returnDate};
                 model.addRow(obj);
             }
         } catch (Exception e1) {
@@ -234,16 +236,24 @@ public class ViewRecord extends javax.swing.JFrame {
                 else return d1.compareTo(d2);
             }
         };
+        
+        Comparator<Object> comparator3 = new Comparator<Object>() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                return Integer.compare(Integer.parseInt(o1.toString()), Integer.parseInt(o2.toString()));
+            }
+        };
 
-        for(int i = 0; i < 7; i++) {
-            if(i != 4 && i != 5) {
+        sorter.setComparator(0, comparator3);
+        for(int i = 1; i < 8; i++) {
+            if(i != 5 && i != 6) {
                 sorter.setComparator(i, comparator1);
             }
             else {
                 sorter.setComparator(i, comparator2);
             }
         }
-        sorter.setComparator(7, comparator2);
+        sorter.setComparator(8, comparator2);
     }
     
     private static java.util.Date stringToDate(String input)  {
@@ -288,6 +298,8 @@ public class ViewRecord extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        txtRecordId = new app.bolivia.swing.JCTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -302,11 +314,11 @@ public class ViewRecord extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Book ID", "Title", "Student ID", "Name", "Issue Date", "Due Date", "Status", "Return Date"
+                "Record ID", "Book ID", "Title", "Student ID", "Name", "Issue Date", "Due Date", "Status", "Return Date"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -362,7 +374,7 @@ public class ViewRecord extends javax.swing.JFrame {
         jLabel6.setText("Status");
         jLabel6.setFont(new java.awt.Font("Consolas", 1, 15)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(204, 204, 204));
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1490, 60, 50, 30));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1460, 20, 50, 30));
 
         statusBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Timely Returned", "Late Returned", "Pending", "Overdue" }));
         statusBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -373,7 +385,7 @@ public class ViewRecord extends javax.swing.JFrame {
                 statusBoxActionPerformed(evt);
             }
         });
-        jPanel2.add(statusBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(1490, 90, 170, 30));
+        jPanel2.add(statusBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(1460, 50, 170, 30));
 
         txtBookId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 2, 0, new java.awt.Color(255, 0, 0)));
         txtBookId.setPlaceholder("Enter Book ID");
@@ -396,7 +408,7 @@ public class ViewRecord extends javax.swing.JFrame {
         jLabel10.setText("Student ID");
         jLabel10.setFont(new java.awt.Font("Consolas", 1, 15)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(204, 204, 204));
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 20, 90, 30));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 20, 90, 30));
 
         txtStudentId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 2, 0, new java.awt.Color(255, 0, 0)));
         txtStudentId.setPlaceholder("Enter Student ID");
@@ -405,16 +417,16 @@ public class ViewRecord extends javax.swing.JFrame {
                 txtStudentIdActionPerformed(evt);
             }
         });
-        jPanel2.add(txtStudentId, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 50, 230, -1));
+        jPanel2.add(txtStudentId, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 50, 230, -1));
 
         txtStudentName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 2, 0, new java.awt.Color(255, 0, 0)));
         txtStudentName.setPlaceholder("Enter Name");
-        jPanel2.add(txtStudentName, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 130, 230, -1));
+        jPanel2.add(txtStudentName, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 130, 230, -1));
 
         jLabel11.setText("Name");
         jLabel11.setFont(new java.awt.Font("Consolas", 1, 15)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(204, 204, 204));
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 100, 100, 30));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 100, 100, 30));
 
         jLabel4.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/previous.png")), 50, 50));
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -436,7 +448,7 @@ public class ViewRecord extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 60, 180, 70));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 60, 180, 70));
 
         jLabel8.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/exit.png")), 50, 50));
         jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -458,6 +470,14 @@ public class ViewRecord extends javax.swing.JFrame {
         });
         jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1720, 60, 75, 75));
 
+        jLabel12.setFont(new java.awt.Font("Consolas", 1, 15)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel12.setText("Record ID");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1460, 100, 80, 30));
+
+        txtRecordId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 2, 0, new java.awt.Color(255, 0, 0)));
+        jPanel2.add(txtRecordId, new org.netbeans.lib.awtextra.AbsoluteConstraints(1460, 130, 170, -1));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1900, 190));
 
         setSize(new java.awt.Dimension(1900, 1000));
@@ -467,13 +487,14 @@ public class ViewRecord extends javax.swing.JFrame {
     private void recordTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recordTableMouseClicked
         int rowNum = recordTable.convertRowIndexToModel(recordTable.getSelectedRow());
         TableModel model = recordTable.getModel();
-        txtBookId.setText(model.getValueAt(rowNum, 0).toString());
-        txtBookName.setText(model.getValueAt(rowNum, 1).toString());
-        txtStudentId.setText(model.getValueAt(rowNum, 2).toString());
-        txtStudentName.setText(model.getValueAt(rowNum, 3).toString());
-        issueDatePicker.setText(model.getValueAt(rowNum, 4).toString());
-        dueDatePicker.setText(model.getValueAt(rowNum, 5).toString());
-        statusBox.setSelectedItem(model.getValueAt(rowNum, 6).toString());
+        txtBookId.setText(model.getValueAt(rowNum, 1).toString());
+        txtBookName.setText(model.getValueAt(rowNum, 2).toString());
+        txtStudentId.setText(model.getValueAt(rowNum, 3).toString());
+        txtStudentName.setText(model.getValueAt(rowNum, 4).toString());
+        issueDatePicker.setText(model.getValueAt(rowNum, 5).toString());
+        dueDatePicker.setText(model.getValueAt(rowNum, 6).toString());
+        statusBox.setSelectedItem(model.getValueAt(rowNum, 7).toString());
+        txtRecordId.setText(model.getValueAt(rowNum, 0).toString());
     }//GEN-LAST:event_recordTableMouseClicked
 
     private void statusBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusBoxActionPerformed
@@ -516,6 +537,7 @@ public class ViewRecord extends javax.swing.JFrame {
         issueDatePicker.setDate(null);
         dueDatePicker.setDate(null);
         statusBox.setSelectedIndex(0);
+        txtRecordId.setText("");
         getRecordsDetail();
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -562,6 +584,7 @@ public class ViewRecord extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -577,6 +600,7 @@ public class ViewRecord extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> statusBox;
     private app.bolivia.swing.JCTextField txtBookId;
     private app.bolivia.swing.JCTextField txtBookName;
+    private app.bolivia.swing.JCTextField txtRecordId;
     private app.bolivia.swing.JCTextField txtStudentId;
     private app.bolivia.swing.JCTextField txtStudentName;
     // End of variables declaration//GEN-END:variables
