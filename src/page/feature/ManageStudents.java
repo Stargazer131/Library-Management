@@ -22,18 +22,19 @@ import ultility.Formatter;
 import ultility.Resizer;
 import javax.swing.ImageIcon;
 import javax.swing.table.TableRowSorter;
+import ultility.ComparatorType;
 
 /**
  *
  * @author Hao
  */
-public class ManageStudent extends javax.swing.JFrame {
+public class ManageStudents extends javax.swing.JFrame {
     
     private boolean comeBackToHomePage;
     /**
      * Creates new form ManageBooks
      */
-    public ManageStudent(boolean comeBackToHomePage, boolean isEditable) {
+    public ManageStudents(boolean comeBackToHomePage, boolean isEditable) {
         this.comeBackToHomePage = comeBackToHomePage;
         initComponents();
         formatDatePicker();
@@ -382,43 +383,15 @@ public class ManageStudent extends javax.swing.JFrame {
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(studentTable.getModel());
         studentTable.setRowSorter(sorter);
 
-        Comparator<Object> comparator1 = new Comparator<Object>() {
-            @Override
-            public int compare(Object o1, Object o2) {
-                // Implement your comparison logic here
-                // For example, to compare strings, you can use the following:
-                return o1.toString().compareTo(o2.toString());
-            }
-        };
-
         for(int i = 0; i < 6; i++) {
             if(i != 3) {
-                sorter.setComparator(i, comparator1);
+                sorter.setComparator(i, ComparatorType.STRING);
             }
         }
-        
-        Comparator<Object> comparator2 = new Comparator<Object>() {
-            @Override
-            public int compare(Object o1, Object o2) {
-                // Implement your comparison logic here
-                // For example, to compare strings, you can use the following:
-                return stringToDate(o1.toString()).compareTo(stringToDate(o2.toString()));
-            }
-        };
-        
-        sorter.setComparator(3, comparator2);
+                
+        sorter.setComparator(3, ComparatorType.DATE);
     }
     
-    private static java.util.Date stringToDate(String input)  {
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            return sdf.parse(input);
-        }
-        catch(Exception e) {
-            return null;
-        }
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -863,21 +836,23 @@ public class ManageStudent extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageStudents.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageStudents.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageStudents.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageStudents.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageStudent(true, true).setVisible(true);
+                new ManageStudents(true, true).setVisible(true);
             }
         });
     }

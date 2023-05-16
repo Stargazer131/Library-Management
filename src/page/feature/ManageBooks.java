@@ -11,7 +11,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -20,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import ultility.ComparatorType;
 import ultility.Recommendator;
 import ultility.Resizer;
 
@@ -27,7 +27,7 @@ import ultility.Resizer;
  *
  * @author Hao
  */
-public class ManageBook extends javax.swing.JFrame {
+public class ManageBooks extends javax.swing.JFrame {
     private static HashMap<String, Integer> genreMap = new HashMap<>();
     private boolean comeBackToHomePage;
     
@@ -56,7 +56,7 @@ public class ManageBook extends javax.swing.JFrame {
     /**
      * Creates new form ManageBooks
      */
-    public ManageBook(boolean comeBackToHomePage, boolean isEditable) {
+    public ManageBooks(boolean comeBackToHomePage, boolean isEditable) {
         this.comeBackToHomePage = comeBackToHomePage;
         initComponents();
         getDataForGenreListFromDatabase();
@@ -578,42 +578,14 @@ public class ManageBook extends javax.swing.JFrame {
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(bookTable.getModel());
         bookTable.setRowSorter(sorter);
 
-        Comparator<Object> comparator1 = new Comparator<Object>() {
-            @Override
-            public int compare(Object o1, Object o2) {
-                // Implement your comparison logic here
-                // For example, to compare strings, you can use the following:
-                return o1.toString().compareTo(o2.toString());
-            }
-        };
-
         for(int i = 0; i < 5; i++) {
             if(i != 3) {
-                sorter.setComparator(i, comparator1);
+                sorter.setComparator(i, ComparatorType.STRING);
             }
         }
         
-        Comparator<Object> comparator2 = new Comparator<Object>() {
-            @Override
-            public int compare(Object o1, Object o2) {
-                // Implement your comparison logic here
-                // For example, to compare strings, you can use the following:
-                return Integer.compare(Integer.parseInt(o1.toString()), Integer.parseInt(o2.toString()));
-            }
-        };
-        
-        sorter.setComparator(3, comparator2);
-        
-        Comparator<Object> comparator3 = new Comparator<Object>() {
-            @Override
-            public int compare(Object o1, Object o2) {
-                // Implement your comparison logic here
-                // For example, to compare strings, you can use the following:
-                return Float.compare(Float.parseFloat(o1.toString()), Float.parseFloat(o2.toString()));
-            }
-        };
-        
-        sorter.setComparator(5, comparator3);        
+        sorter.setComparator(3, ComparatorType.INTERGER);        
+        sorter.setComparator(5, ComparatorType.FLOAT);        
     }
 
     /**
@@ -1026,21 +998,23 @@ public class ManageBook extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageBooks.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageBooks.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageBooks.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageBooks.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageBook(true, true).setVisible(true);
+                new ManageBooks(true, true).setVisible(true);
             }
         });
     }

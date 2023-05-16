@@ -701,7 +701,7 @@ public class IssueBook extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ManageBook page = new ManageBook(false, false);
+        ManageBooks page = new ManageBooks(false, false);
         page.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -751,7 +751,7 @@ public class IssueBook extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        ManageStudent page = new ManageStudent(false, false);
+        ManageStudents page = new ManageStudents(false, false);
         page.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 

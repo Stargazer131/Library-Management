@@ -13,8 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import page.feature.IssueBook;
-import page.feature.ManageBook;
-import page.feature.ManageStudent;
+import page.feature.ManageBooks;
+import page.feature.ManageStudents;
 import page.feature.ReturnBook;
 import page.feature.ViewRecord;
 import javax.swing.ImageIcon;
@@ -303,10 +303,10 @@ public class HomePage extends javax.swing.JFrame {
         });
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel8.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/book.png")), 50, 50));
-        jLabel8.setText("Mange Books");
         jLabel8.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel8.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/book.png")), 50, 50));
+        jLabel8.setText("Mange Books");
         jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 290, 80));
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 350, 80));
@@ -617,13 +617,13 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel13MouseClicked
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
-        ManageBook page = new ManageBook(true, true);
+        ManageBooks page = new ManageBooks(true, true);
         page.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
-        ManageStudent page = new ManageStudent(true, true);
+        ManageStudents page = new ManageStudents(true, true);
         page.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jPanel7MouseClicked

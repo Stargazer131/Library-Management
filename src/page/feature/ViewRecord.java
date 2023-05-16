@@ -21,6 +21,7 @@ import ultility.Resizer;
 import javax.swing.ImageIcon;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import ultility.ComparatorType;
 import ultility.Updater;
 
 /**
@@ -215,17 +216,8 @@ public class ViewRecord extends javax.swing.JFrame {
     private void sortByColumn() {
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(recordTable.getModel());
         recordTable.setRowSorter(sorter);
-
-        Comparator<Object> comparator1 = new Comparator<Object>() {
-            @Override
-            public int compare(Object o1, Object o2) {
-                // Implement your comparison logic here
-                // For example, to compare strings, you can use the following:
-                return o1.toString().compareTo(o2.toString());
-            }
-        };
         
-        Comparator<Object> comparator2 = new Comparator<Object>() {
+        Comparator<Object> comparatorDate = new Comparator<Object>() {
             @Override
             public int compare(Object o1, Object o2) {
                 java.util.Date d1 = stringToDate(o1.toString());
@@ -247,13 +239,13 @@ public class ViewRecord extends javax.swing.JFrame {
         sorter.setComparator(0, comparator3);
         for(int i = 1; i < 8; i++) {
             if(i != 5 && i != 6) {
-                sorter.setComparator(i, comparator1);
+                sorter.setComparator(i, ComparatorType.STRING);
             }
             else {
-                sorter.setComparator(i, comparator2);
+                sorter.setComparator(i, ComparatorType.DATE);
             }
         }
-        sorter.setComparator(8, comparator2);
+        sorter.setComparator(8, comparatorDate);
     }
     
     private static java.util.Date stringToDate(String input)  {
