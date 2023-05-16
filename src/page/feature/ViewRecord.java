@@ -372,11 +372,6 @@ public class ViewRecord extends javax.swing.JFrame {
         statusBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         statusBox.setFont(new java.awt.Font("Consolas", 1, 15)); // NOI18N
         statusBox.setForeground(new java.awt.Color(51, 51, 51));
-        statusBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                statusBoxActionPerformed(evt);
-            }
-        });
         jPanel2.add(statusBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(1460, 50, 170, 30));
 
         txtBookId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 2, 0, new java.awt.Color(255, 0, 0)));
@@ -404,11 +399,6 @@ public class ViewRecord extends javax.swing.JFrame {
 
         txtStudentId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 2, 0, new java.awt.Color(255, 0, 0)));
         txtStudentId.setPlaceholder("Enter Student ID");
-        txtStudentId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStudentIdActionPerformed(evt);
-            }
-        });
         jPanel2.add(txtStudentId, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 50, 230, -1));
 
         txtStudentName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 2, 0, new java.awt.Color(255, 0, 0)));
@@ -488,14 +478,6 @@ public class ViewRecord extends javax.swing.JFrame {
         statusBox.setSelectedItem(model.getValueAt(rowNum, 7).toString());
         txtRecordId.setText(model.getValueAt(rowNum, 0).toString());
     }//GEN-LAST:event_recordTableMouseClicked
-
-    private void statusBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_statusBoxActionPerformed
-
-    private void txtStudentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStudentIdActionPerformed
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         if(comeBackToHomePage) {

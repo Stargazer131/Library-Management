@@ -133,8 +133,8 @@ public class ManageBooks extends javax.swing.JFrame {
             return false;
         }
         
-        if(bookName.length() > 100) {
-            JOptionPane.showMessageDialog(this, "Title can't be larger than 100 characters");
+        if(bookName.length() > 300) {
+            JOptionPane.showMessageDialog(this, "Title can't be larger than 300 characters");
             return false;
         }
         
@@ -143,8 +143,8 @@ public class ManageBooks extends javax.swing.JFrame {
             return false;
         }
         
-        if(author.length() > 30) {
-            JOptionPane.showMessageDialog(this, "Author's name can't be larger than 30 characters");
+        if(author.length() > 100) {
+            JOptionPane.showMessageDialog(this, "Author's name can't be larger than 100 characters");
         }
         
         try {

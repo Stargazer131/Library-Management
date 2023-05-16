@@ -369,11 +369,6 @@ public class ReturnBook extends javax.swing.JFrame {
                 txtStudentIdFocusLost(evt);
             }
         });
-        txtStudentId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStudentIdActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtStudentId, new org.netbeans.lib.awtextra.AbsoluteConstraints(1620, 240, 240, -1));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
@@ -386,11 +381,6 @@ public class ReturnBook extends javax.swing.JFrame {
         txtBookId.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtBookIdFocusLost(evt);
-            }
-        });
-        txtBookId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBookIdActionPerformed(evt);
             }
         });
         jPanel1.add(txtBookId, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 240, 240, -1));
@@ -416,11 +406,11 @@ public class ReturnBook extends javax.swing.JFrame {
         jLabel14.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/id-card.png")), 50, 50));
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 220, 50, 50));
 
-        jButton2.setBackground(new java.awt.Color(153, 204, 255));
-        jButton2.setFont(new java.awt.Font("Consolas", 1, 25)); // NOI18N
         jButton2.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/return.png")), 50, 50));
         jButton2.setText("RETURN");
+        jButton2.setBackground(new java.awt.Color(153, 204, 255));
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setFont(new java.awt.Font("Consolas", 1, 25)); // NOI18N
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -429,11 +419,11 @@ public class ReturnBook extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1600, 380, 190, 70));
 
-        jButton3.setBackground(new java.awt.Color(153, 204, 255));
-        jButton3.setFont(new java.awt.Font("Consolas", 1, 25)); // NOI18N
         jButton3.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/record.png")), 50, 50));
         jButton3.setText("RECORD");
+        jButton3.setBackground(new java.awt.Color(153, 204, 255));
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.setFont(new java.awt.Font("Consolas", 1, 25)); // NOI18N
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -451,8 +441,8 @@ public class ReturnBook extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1850, 0, 50, 50));
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/reset.png")), 75, 75));
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setBorder(null);
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -462,11 +452,11 @@ public class ReturnBook extends javax.swing.JFrame {
         });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 0, 75, 75));
 
-        jButton4.setBackground(new java.awt.Color(153, 204, 255));
-        jButton4.setFont(new java.awt.Font("Consolas", 1, 25)); // NOI18N
         jButton4.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/search.png")), 50, 50));
         jButton4.setText("FIND");
+        jButton4.setBackground(new java.awt.Color(153, 204, 255));
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.setFont(new java.awt.Font("Consolas", 1, 25)); // NOI18N
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -485,17 +475,9 @@ public class ReturnBook extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtStudentIdFocusLost
 
-    private void txtStudentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStudentIdActionPerformed
-
     private void txtBookIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBookIdFocusLost
 
     }//GEN-LAST:event_txtBookIdFocusLost
-
-    private void txtBookIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBookIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBookIdActionPerformed
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         HomePage page = new HomePage();

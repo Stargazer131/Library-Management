@@ -591,10 +591,6 @@ public class Statistic extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabel8MouseClicked
 
-    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
-
-    }//GEN-LAST:event_tableMouseClicked
-
     private void radioBtnStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnStudentActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radioBtnStudentActionPerformed
@@ -628,6 +624,10 @@ public class Statistic extends javax.swing.JFrame {
         ageBox.setSelectedIndex(0);
         updateBookTable();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+
+    }//GEN-LAST:event_tableMouseClicked
 
     private void search() {
         if(radioBtnBook.isSelected()) {

@@ -13,8 +13,6 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
-import java.util.Comparator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -119,8 +117,8 @@ public class ManageStudents extends javax.swing.JFrame {
             return false;
         }
         
-        if(name.length() > 30) {
-            JOptionPane.showMessageDialog(this, "Student Name can't be more than 30 characters");
+        if(name.length() > 100) {
+            JOptionPane.showMessageDialog(this, "Student Name can't be more than 100 characters");
             return false;
         }
         
@@ -447,16 +445,6 @@ public class ManageStudents extends javax.swing.JFrame {
         txtStudentId.setBackground(new java.awt.Color(102, 102, 255));
         txtStudentId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         txtStudentId.setPlaceholder("Enter Student Id ...");
-        txtStudentId.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtStudentIdFocusLost(evt);
-            }
-        });
-        txtStudentId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStudentIdActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtStudentId, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 240, -1));
 
         jLabel10.setText("Name");
@@ -467,16 +455,6 @@ public class ManageStudents extends javax.swing.JFrame {
         txtStudentName.setBackground(new java.awt.Color(102, 102, 255));
         txtStudentName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         txtStudentName.setPlaceholder("Enter Student Name ...");
-        txtStudentName.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtStudentNameFocusLost(evt);
-            }
-        });
-        txtStudentName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStudentNameActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtStudentName, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 240, -1));
 
         jLabel11.setText("Birthday");
@@ -490,11 +468,6 @@ public class ManageStudents extends javax.swing.JFrame {
         genderComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Male", "Female" }));
         genderComboBox.setBorder(null);
         genderComboBox.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        genderComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                genderComboBoxActionPerformed(evt);
-            }
-        });
         jPanel1.add(genderComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 460, 250, 30));
 
         jLabel12.setText("Gender");
@@ -588,16 +561,6 @@ public class ManageStudents extends javax.swing.JFrame {
         txtEmail.setBackground(new java.awt.Color(102, 102, 255));
         txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         txtEmail.setPlaceholder("Enter Email ...");
-        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtEmailFocusLost(evt);
-            }
-        });
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 650, 240, -1));
 
         jLabel18.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/email.png")), 50, 50));
@@ -618,16 +581,6 @@ public class ManageStudents extends javax.swing.JFrame {
         txtMobile.setBackground(new java.awt.Color(102, 102, 255));
         txtMobile.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         txtMobile.setPlaceholder("Enter Phone Number ...");
-        txtMobile.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtMobileFocusLost(evt);
-            }
-        });
-        txtMobile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMobileActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtMobile, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 650, 240, -1));
 
         jButton6.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/reset.png")), 75, 75));
@@ -702,22 +655,6 @@ public class ManageStudents extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtStudentIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtStudentIdFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStudentIdFocusLost
-
-    private void txtStudentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStudentIdActionPerformed
-
-    private void txtStudentNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtStudentNameFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStudentNameFocusLost
-
-    private void txtStudentNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStudentNameActionPerformed
-
     private void studentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentTableMouseClicked
         int rowNum = studentTable.convertRowIndexToModel(studentTable.getSelectedRow());
         TableModel model = studentTable.getModel();
@@ -728,10 +665,6 @@ public class ManageStudents extends javax.swing.JFrame {
         txtEmail.setText(model.getValueAt(rowNum, 4).toString());
         txtMobile.setText(model.getValueAt(rowNum, 5).toString());
     }//GEN-LAST:event_studentTableMouseClicked
-
-    private void genderComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_genderComboBoxActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         if(comeBackToHomePage) {
@@ -792,22 +725,6 @@ public class ManageStudents extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_jLabel5MouseClicked
-
-    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailFocusLost
-
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailActionPerformed
-
-    private void txtMobileFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMobileFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMobileFocusLost
-
-    private void txtMobileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMobileActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMobileActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         txtStudentId.setText("");

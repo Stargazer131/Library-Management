@@ -457,15 +457,15 @@ public class IssueBook extends javax.swing.JFrame {
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         jScrollPane1.setBorder(null);
 
-        lblGenres.setEditable(false);
-        lblGenres.setBackground(new java.awt.Color(102, 102, 255));
         lblGenres.setColumns(20);
-        lblGenres.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
+        lblGenres.setEditable(false);
         lblGenres.setRows(5);
-        lblGenres.setToolTipText("");
+        lblGenres.setBackground(new java.awt.Color(102, 102, 255));
         lblGenres.setBorder(null);
         lblGenres.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblGenres.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
         lblGenres.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        lblGenres.setToolTipText("");
         jScrollPane1.setViewportView(lblGenres);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 750, 470, 70));
@@ -560,11 +560,6 @@ public class IssueBook extends javax.swing.JFrame {
                 txtStudentIdFocusLost(evt);
             }
         });
-        txtStudentId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStudentIdActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtStudentId, new org.netbeans.lib.awtextra.AbsoluteConstraints(1580, 250, 240, -1));
 
         jLabel23.setText("Book ID");
@@ -617,11 +612,11 @@ public class IssueBook extends javax.swing.JFrame {
         jLabel14.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/calender.png")), 50, 50));
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 390, 50, 50));
 
-        jButton2.setBackground(new java.awt.Color(153, 204, 255));
-        jButton2.setFont(new java.awt.Font("Consolas", 1, 25)); // NOI18N
         jButton2.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/book.png")), 50, 50));
         jButton2.setText("BOOK");
+        jButton2.setBackground(new java.awt.Color(153, 204, 255));
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setFont(new java.awt.Font("Consolas", 1, 25)); // NOI18N
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -639,8 +634,8 @@ public class IssueBook extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1850, 0, 50, 50));
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/reset.png")), 75, 75));
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setBorder(null);
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -650,11 +645,11 @@ public class IssueBook extends javax.swing.JFrame {
         });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 0, 75, 75));
 
-        jButton3.setBackground(new java.awt.Color(153, 204, 255));
-        jButton3.setFont(new java.awt.Font("Consolas", 1, 25)); // NOI18N
         jButton3.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/borrow.png")), 50, 50));
         jButton3.setText("ISSUE");
+        jButton3.setBackground(new java.awt.Color(153, 204, 255));
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.setFont(new java.awt.Font("Consolas", 1, 25)); // NOI18N
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -663,11 +658,11 @@ public class IssueBook extends javax.swing.JFrame {
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1440, 670, 170, 70));
 
-        jButton4.setBackground(new java.awt.Color(153, 204, 255));
-        jButton4.setFont(new java.awt.Font("Consolas", 1, 25)); // NOI18N
         jButton4.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/student.png")), 50, 50));
         jButton4.setText("STUDENT");
+        jButton4.setBackground(new java.awt.Color(153, 204, 255));
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.setFont(new java.awt.Font("Consolas", 1, 25)); // NOI18N
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -685,10 +680,6 @@ public class IssueBook extends javax.swing.JFrame {
     private void txtBookIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBookIdFocusLost
         getBookDetails();
     }//GEN-LAST:event_txtBookIdFocusLost
-
-    private void txtStudentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStudentIdActionPerformed
 
     private void txtStudentIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtStudentIdFocusLost
         getStudentDetails();
