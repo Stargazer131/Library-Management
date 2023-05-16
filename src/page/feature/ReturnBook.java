@@ -162,7 +162,7 @@ public class ReturnBook extends javax.swing.JFrame {
                 
             }
             else {
-                System.err.println("Update error");
+                System.out.println("Update error");
             }
         } 
         catch(Exception e1) {
@@ -173,6 +173,76 @@ public class ReturnBook extends javax.swing.JFrame {
             try { if (pst != null) pst.close(); } catch (Exception e3) {}
             try { if (con != null) con.close(); } catch (Exception e4) {}
         }
+        
+        // check if how many day since the due date
+        int recordId = 0;
+        Date dueDate = Date.valueOf(LocalDate.now());
+        con = null;
+        pst = null;
+        rs = null;
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms?autoReconnect=true&useSSL=false", "root", "hayasaka131");
+            String sql = "select record_id, due_date from records where "
+                        + "book_id = ? and student_id = ? "
+                        + "order by record_id desc limit 1";    
+            pst = con.prepareStatement(sql);
+            pst.setString(1, bookId);
+            pst.setString(2, studentId);   
+            rs = pst.executeQuery();
+            rs.next();
+            dueDate = rs.getDate("due_date");
+            recordId = rs.getInt("record_id");
+        } 
+        catch(Exception e1) {
+            System.out.println(e1);
+        } 
+        finally {
+            try { if (rs != null) rs.close(); } catch (Exception e2) {}
+            try { if (pst != null) pst.close(); } catch (Exception e3) {}
+            try { if (con != null) con.close(); } catch (Exception e4) {}
+        }
+        
+        int dayDiff = caculateDayDiff(today, dueDate);
+        // them phieu phat
+        if(dayDiff > 0) {
+            float amount = 0.2F*dayDiff;
+            String reason = String.format("Return late %d days", dayDiff);
+          
+            con = null;
+            pst = null;
+            rs = null;
+            try {
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms?autoReconnect=true&useSSL=false", "root", "hayasaka131");
+                String sql = "insert into fines(record_id, amount, reason, status, fine_date) values(?,?,?,?,?)";    
+                pst = con.prepareStatement(sql);
+                pst.setInt(1, recordId);
+                pst.setFloat(2, amount);
+                pst.setString(3, reason);
+                pst.setString(4, "Unpaid");
+                pst.setDate(5, today);
+                
+                int row = pst.executeUpdate();
+                if(row > 0) {
+                    
+                }
+                else {
+                    System.out.println("Insert fine failure");
+                }
+            } 
+            catch(Exception e1) {
+                System.out.println(e1);
+            } 
+            finally {
+                try { if (rs != null) rs.close(); } catch (Exception e2) {}
+                try { if (pst != null) pst.close(); } catch (Exception e3) {}
+                try { if (con != null) con.close(); } catch (Exception e4) {}
+            }
+        }
+    }
+    
+    private static int caculateDayDiff(Date d1, Date d2) {
+        long diff = d1.getTime()-d2.getTime();
+        return (int)(diff/(1000*60*60*24));
     }
     
     // check if the book is overdue
@@ -498,7 +568,8 @@ public class ReturnBook extends javax.swing.JFrame {
                     }
                     else {
                         updateIssueDetail("Pending");
-                    }   increaseBookQuantity(1);
+                    }   
+                    increaseBookQuantity(1);
                     JOptionPane.showMessageDialog(this, "Return book successfully!");
                     break;
                 default:

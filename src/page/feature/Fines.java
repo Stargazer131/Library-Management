@@ -11,7 +11,7 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -19,6 +19,7 @@ import ultility.Formatter;
 import ultility.Resizer;
 import javax.swing.ImageIcon;
 import javax.swing.table.TableRowSorter;
+import ultility.ComparatorType;
 
 /**
  *
@@ -53,7 +54,7 @@ public class Fines extends javax.swing.JFrame {
                 String reason = rs.getString("reason");
                 String status = rs.getString("status");
                 String fineDate = Formatter.dateToString(rs.getDate("fine_date"));
-                String payDate = Formatter.dateToString(rs.getDate("pay_date"));
+                String payDate = Formatter.dateToString(rs.getDate("pay_date"));    
                 Object[] obj = {recordId, amount, reason, status, fineDate, payDate};
                 model.addRow(obj);
             }
@@ -155,8 +156,176 @@ public class Fines extends javax.swing.JFrame {
         }
     }
         
-    // check if the record id is already exited
-    private boolean checkExitedRecord() {
+    // update fine or pay the fine
+    private void updateFine() {
+        int recordId = Integer.parseInt(txtRecordId.getText());
+        float amount = Float.parseFloat(txtAmount.getText());
+        String reason = txtReason.getText();
+        String statusBefore = "All";
+        String statusAfter = (String)statusComboBox.getSelectedItem();
+        Date payDate = new Date(new java.util.Date().getTime());
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms?autoReconnect=true&useSSL=false", "root", "hayasaka131");
+            String sql = "select status from fines where record_id = ?";    
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, recordId);
+            rs = pst.executeQuery();
+            rs.next();
+            statusBefore = rs.getString("status");
+        } 
+        catch(Exception e1) {
+            System.out.println(e1);
+        } 
+        finally {
+            try { if (rs != null) rs.close(); } catch (Exception e2) {}
+            try { if (pst != null) pst.close(); } catch (Exception e3) {}
+            try { if (con != null) con.close(); } catch (Exception e4) {}
+        }
+        
+        // if the fine is unpaid -> update detail or pay it
+        if(statusBefore.equals("Unpaid")) {
+            // update the detail
+            if(statusAfter.endsWith("Unpaid")) {
+                con = null;
+                pst = null;
+                rs = null;
+                try {
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms?autoReconnect=true&useSSL=false", "root", "hayasaka131");
+                    String sql = "update fines "
+                            + "set amount = ?, reason = ? "
+                            + "where record_id = ?";    
+                    pst = con.prepareStatement(sql);
+                    pst.setFloat(1, amount);
+                    pst.setString(2, reason);
+                    pst.setInt(3, recordId);
+                    int row = pst.executeUpdate();
+                    if(row > 0) {
+                        JOptionPane.showMessageDialog(this, "Update fine sucessfully!");
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(this, "Update fine failure!");
+                    }
+                } 
+                catch(Exception e1) {
+                    System.out.println(e1);
+                } 
+                finally {
+                    try { if (rs != null) rs.close(); } catch (Exception e2) {}
+                    try { if (pst != null) pst.close(); } catch (Exception e3) {}
+                    try { if (con != null) con.close(); } catch (Exception e4) {}
+                }
+            }
+            
+            // pay it
+            else {
+                con = null;
+                pst = null;
+                rs = null;
+                try {
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms?autoReconnect=true&useSSL=false", "root", "hayasaka131");
+                    String sql = "update fines "
+                            + "set status = ?, pay_date = ? "
+                            + "where record_id = ?";    
+                    pst = con.prepareStatement(sql);
+                    pst.setString(1, "Paid");
+                    pst.setDate(2, payDate);
+                    pst.setInt(3, recordId);
+                    int row = pst.executeUpdate();
+                    if(row > 0) {
+                        JOptionPane.showMessageDialog(this, "Pay fine sucessfully!");
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(this, "Pay fine failure!");
+                    }
+                } 
+                catch(Exception e1) {
+                    System.out.println(e1);
+                } 
+                finally {
+                    try { if (rs != null) rs.close(); } catch (Exception e2) {}
+                    try { if (pst != null) pst.close(); } catch (Exception e3) {}
+                    try { if (con != null) con.close(); } catch (Exception e4) {}
+                }               
+            }
+        }
+        
+        // if the fine is paid -> only update detail
+        else {
+            // error
+            if(statusAfter.endsWith("Unpaid")) {
+                JOptionPane.showMessageDialog(this, "Can't update a paid fine to unpaid");
+            }
+            
+            // update it
+            else {
+                con = null;
+                pst = null;
+                rs = null;
+                try {
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms?autoReconnect=true&useSSL=false", "root", "hayasaka131");
+                    String sql = "update fines "
+                            + "set amount = ?, reason = ? "
+                            + "where record_id = ?";    
+                    pst = con.prepareStatement(sql);
+                    pst.setFloat(1, amount);
+                    pst.setString(2, reason);
+                    pst.setInt(3, recordId);
+                    int row = pst.executeUpdate();
+                    if(row > 0) {
+                        JOptionPane.showMessageDialog(this, "Update fine sucessfully!");
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(this, "Update fine failure!");
+                    }
+                } 
+                catch(Exception e1) {
+                    System.out.println(e1);
+                } 
+                finally {
+                    try { if (rs != null) rs.close(); } catch (Exception e2) {}
+                    try { if (pst != null) pst.close(); } catch (Exception e3) {}
+                    try { if (con != null) con.close(); } catch (Exception e4) {}
+                }               
+            }
+        }
+    } 
+    
+    private void deleteFine() {
+        int recordId = Integer.parseInt(txtRecordId.getText());
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms?autoReconnect=true&useSSL=false", "root", "hayasaka131");
+            String sql = "delete from fines where record_id = ?";    
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, recordId);
+            
+            int rowCount = pst.executeUpdate();
+            if(rowCount > 0) {
+                JOptionPane.showMessageDialog(this, "Fine delete successfully!");
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Fine delete failure!");
+            }
+        } 
+        catch(Exception e1) {
+            System.out.println(e1);
+        } 
+        finally {
+            try { if (rs != null) rs.close(); } catch (Exception e2) {}
+            try { if (pst != null) pst.close(); } catch (Exception e3) {}
+            try { if (con != null) con.close(); } catch (Exception e4) {}
+        }        
+    }
+    
+    // check if the fine id is already exited
+    private boolean checkExitedFine() {
         int recordId = Integer.parseInt(txtRecordId.getText());
         boolean exit = false;
         Connection con = null;
@@ -217,7 +386,7 @@ public class Fines extends javax.swing.JFrame {
             
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms?autoReconnect=true&useSSL=false", "root", "hayasaka131");
             String sql = "select * from fines " +
-                        "where record_id between ? and ? and reason like ? and status = ?";            
+                        "where record_id between ? and ? and reason like ? and status like ?";            
 
             pst = con.prepareStatement(sql);
             pst.setInt(1, min);
@@ -266,17 +435,27 @@ public class Fines extends javax.swing.JFrame {
     // sort column 
     private void sortByColumn() {
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(fineTable.getModel());
-        fineTable.setRowSorter(sorter);        
-    }
-    
-    private static java.util.Date stringToDate(String input)  {
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            return sdf.parse(input);
+        fineTable.setRowSorter(sorter);  
+        
+        Comparator<Object> comparatorDate = new Comparator<Object>() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                Date d1 = Formatter.stringToDate(o1.toString());
+                Date d2 = Formatter.stringToDate(o2.toString());
+                if(d1 == null && d2 == null) return 0;
+                else if(d1 == null) return -1;
+                else if(d2 == null) return 1;
+                else return d1.compareTo(d2);
+            }
+        };
+        
+        sorter.setComparator(0, ComparatorType.INTERGER);
+        sorter.setComparator(1, ComparatorType.FLOAT);
+        for(int i = 2; i <= 3; i++) {
+            sorter.setComparator(i, ComparatorType.STRING);
         }
-        catch(Exception e) {
-            return null;
-        }
+        sorter.setComparator(4, ComparatorType.DATE);
+        sorter.setComparator(5, comparatorDate);
     }
 
     /**
@@ -340,14 +519,9 @@ public class Fines extends javax.swing.JFrame {
         txtAmount.setPlaceholder("Enter Amount ...");
         jPanel1.add(txtAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 360, 240, -1));
 
+        statusComboBox.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         statusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Paid", "Unpaid" }));
         statusComboBox.setBorder(null);
-        statusComboBox.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        statusComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                statusComboBoxActionPerformed(evt);
-            }
-        });
         jPanel1.add(statusComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 580, 250, 30));
 
         jLabel12.setText("Status");
@@ -364,11 +538,11 @@ public class Fines extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
+        jButton1.setBackground(new java.awt.Color(153, 204, 255));
+        jButton1.setFont(new java.awt.Font("Consolas", 1, 25)); // NOI18N
         jButton1.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/search.png")), 50, 50));
         jButton1.setText("SEARCH");
-        jButton1.setBackground(new java.awt.Color(153, 204, 255));
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setFont(new java.awt.Font("Consolas", 1, 25)); // NOI18N
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -400,16 +574,6 @@ public class Fines extends javax.swing.JFrame {
         txtReason.setBackground(new java.awt.Color(102, 102, 255));
         txtReason.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         txtReason.setPlaceholder("Enter Reason  ...");
-        txtReason.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtReasonFocusLost(evt);
-            }
-        });
-        txtReason.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtReasonActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtReason, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 580, 240, -1));
 
         jLabel18.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/reason.png")), 50, 50));
@@ -417,8 +581,8 @@ public class Fines extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, 50, 50));
 
-        jButton6.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/reset.png")), 75, 75));
         jButton6.setBackground(new java.awt.Color(102, 102, 255));
+        jButton6.setIcon(Resizer.resizeImageIcon(new ImageIcon(getClass().getResource("/resource/icons/reset.png")), 75, 75));
         jButton6.setBorder(null);
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -526,29 +690,18 @@ public class Fines extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void fineTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fineTableMouseClicked
-//        int rowNum = fineTable.convertRowIndexToModel(fineTable.getSelectedRow());
-//        TableModel model = fineTable.getModel();
-//        txtRecordId.setText(model.getValueAt(rowNum, 0).toString());
-//        txtAmount.setText(model.getValueAt(rowNum, 1).toString());
-//        statusComboBox.setSelectedItem(model.getValueAt(rowNum, 2).toString());
-//        datePicker.setText(model.getValueAt(rowNum, 3).toString());
-//        txtReason.setText(model.getValueAt(rowNum, 4).toString());
-//        txtMobile.setText(model.getValueAt(rowNum, 5).toString());
+        int rowNum = fineTable.convertRowIndexToModel(fineTable.getSelectedRow());
+        TableModel model = fineTable.getModel();
+        txtRecordId.setText(model.getValueAt(rowNum, 0).toString());
+        txtAmount.setText(model.getValueAt(rowNum, 1).toString());
+        txtReason.setText(model.getValueAt(rowNum, 2).toString());
+        statusComboBox.setSelectedItem(model.getValueAt(rowNum, 3));     
     }//GEN-LAST:event_fineTableMouseClicked
 
-    private void statusComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_statusComboBoxActionPerformed
-
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-//        if(comeBackToHomePage) {
-//            HomePage page = new HomePage();
-//            page.setVisible(true);
-//            this.dispose();
-//        }
-//        else {
-//            this.dispose();
-//        }
+        HomePage page = new HomePage();
+        page.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -556,69 +709,51 @@ public class Fines extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-//        if(comeBackToHomePage) {
-//            System.exit(0);
-//        }
-//        else {
-//            this.dispose();
-//        }
+        System.exit(0);
     }//GEN-LAST:event_jLabel5MouseClicked
 
-    private void txtReasonFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtReasonFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtReasonFocusLost
-
-    private void txtReasonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtReasonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtReasonActionPerformed
-
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-//        txtRecordId.setText("");
-//        txtAmount.setText("");
-//        txtReason.setText("");
-//        txtMobile.setText("");
-//        statusComboBox.setSelectedIndex(0);
-//        datePicker.setDate(null);
-//        setStudentsDetailToTable();
+        txtRecordId.setText("");
+        txtAmount.setText("");
+        txtReason.setText("");
+        statusComboBox.setSelectedIndex(0);
+        refresh();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-//        if(validateData()) {
-//            if(!checkExitedBook()) {
-//                addBook();
-//                refresh();
-//                Recommendator.updateData();
-//            }
-//            else {
-//                JOptionPane.showMessageDialog(this, "This Book ID is already existed!");
-//            }
-//        }
+        if(validateData()) {
+            if(!checkExitedFine()) {
+                addFine();
+                refresh();
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "This Fine is already existed!");
+            }
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        if(validateData()) {
-//            if(checkExitedBook()) {
-//                updateBook();
-//                refresh();
-//                Recommendator.updateData();
-//            }
-//            else {
-//                JOptionPane.showMessageDialog(this, "Can't find the book to update!");
-//            }
-//        }
+        if(validateData()) {
+            if(checkExitedFine()) {
+                updateFine();
+                refresh();
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Can't find the Fine to update!");
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-//        if(validateData()) {
-//            if(checkExitedBook()) {
-//                deleteBook();
-//                refresh();
-//                Recommendator.updateData();
-//            }
-//            else {
-//                JOptionPane.showMessageDialog(this, "Can't find the book to delete");
-//            }
-//        }
+        if(validateData()) {
+            if(checkExitedFine()) {
+                deleteFine();
+                refresh();
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Can't find the book to delete");
+            }
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

@@ -12,7 +12,6 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import javax.swing.table.DefaultTableModel;
 import page.main.HomePage;
@@ -81,11 +80,7 @@ public class ViewRecord extends javax.swing.JFrame {
                 String studentName = rs.getString("name");
                 String issueDate = Formatter.dateToString(rs.getDate("issue_date"));
                 String dueDate = Formatter.dateToString(rs.getDate("due_date"));
-
-                String returnDate = "None";
-                if (rs.getDate("return_date") != null) {
-                    returnDate = Formatter.dateToString(rs.getDate("return_date"));
-                }
+                String returnDate = Formatter.dateToString(rs.getDate("return_date"));
                 String status = rs.getString("status");
 
                 Object[] obj = {recordId, bookId, bookName, studentId, studentName, issueDate, dueDate, status, returnDate};
@@ -122,6 +117,16 @@ public class ViewRecord extends javax.swing.JFrame {
 
     // search by data provied by user
     private void search() {
+        int recordId, min = 1, max = Integer.MAX_VALUE;
+        try {
+            recordId = Integer.parseInt(txtRecordId.getText());
+            min = recordId;
+            max = recordId;
+        }
+        catch(NumberFormatException nfe) {
+            
+        }
+        
         String bookId = txtBookId.getText(), bookName = txtBookName.getText();
         String studentId = txtStudentId.getText(), studentName = txtStudentName.getText();
         String status = statusBox.getSelectedItem().toString();
@@ -153,19 +158,21 @@ public class ViewRecord extends javax.swing.JFrame {
             String sql = "select record_id, book_id, title, student_id, name, "
                     + "issue_date, due_date, status, return_date "
                     + "from books natural join records natural join students "
-                    + "where lower(book_id) like ? and lower(title) like ? and "
+                    + "where record_id between ? and ? and lower(book_id) like ? and lower(title) like ? and "
                     + "lower(student_id) like ? and lower(name) like ? and "
                     + "status like ? and issue_date >= ? and due_date <= ? "
                     + "order by record_id desc";
 
             pst = con.prepareStatement(sql);
-            pst.setString(1, "%" + bookId + "%");
-            pst.setString(2, "%" + bookName + "%");
-            pst.setString(3, "%" + studentId + "%");
-            pst.setString(4, "%" + studentName + "%");
-            pst.setString(5, "%" + status + "%");
-            pst.setDate(6, issueDate);
-            pst.setDate(7, dueDate);
+            pst.setInt(1, min);
+            pst.setInt(2, max);
+            pst.setString(3, "%" + bookId + "%");
+            pst.setString(4, "%" + bookName + "%");
+            pst.setString(5, "%" + studentId + "%");
+            pst.setString(6, "%" + studentName + "%");
+            pst.setString(7, "%" + status + "%");
+            pst.setDate(8, issueDate);
+            pst.setDate(9, dueDate);
             rs = pst.executeQuery();
 
             DefaultTableModel model = (DefaultTableModel) recordTable.getModel();
@@ -178,11 +185,7 @@ public class ViewRecord extends javax.swing.JFrame {
                 String studentNameData = rs.getString("name");
                 String issueDateData = Formatter.dateToString(rs.getDate("issue_date"));
                 String dueDateData = Formatter.dateToString(rs.getDate("due_date"));
-
-                String returnDate = "None";
-                if (rs.getDate("return_date") != null) {
-                    returnDate = Formatter.dateToString(rs.getDate("return_date"));
-                }
+                String returnDate = Formatter.dateToString(rs.getDate("return_date"));
                 String statusData = rs.getString("status");
 
                 Object[] obj = {recordIdData, bookIdData, bookNameData, studentIdData, studentNameData, issueDateData, dueDateData, statusData, returnDate};
@@ -220,8 +223,8 @@ public class ViewRecord extends javax.swing.JFrame {
         Comparator<Object> comparatorDate = new Comparator<Object>() {
             @Override
             public int compare(Object o1, Object o2) {
-                java.util.Date d1 = stringToDate(o1.toString());
-                java.util.Date d2 = stringToDate(o2.toString());
+                Date d1 = Formatter.stringToDate(o1.toString());
+                Date d2 = Formatter.stringToDate(o2.toString());
                 if(d1 == null && d2 == null) return 0;
                 else if(d1 == null) return -1;
                 else if(d2 == null) return 1;
@@ -246,16 +249,6 @@ public class ViewRecord extends javax.swing.JFrame {
             }
         }
         sorter.setComparator(8, comparatorDate);
-    }
-    
-    private static java.util.Date stringToDate(String input)  {
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            return sdf.parse(input);
-        }
-        catch(Exception e) {
-            return null;
-        }
     }
 
     /**

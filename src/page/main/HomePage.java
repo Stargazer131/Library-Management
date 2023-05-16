@@ -19,6 +19,7 @@ import page.feature.ReturnBook;
 import page.feature.ViewRecord;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
+import page.feature.Fines;
 import page.feature.Statistic;
 import ultility.Recommendator;
 import ultility.Resizer;
@@ -667,7 +668,9 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel13MouseEntered
 
     private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked
-
+        Fines page = new Fines();
+        page.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jPanel11MouseClicked
 
     private void jPanel11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseEntered
